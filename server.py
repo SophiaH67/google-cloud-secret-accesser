@@ -35,3 +35,6 @@ async def hello_world(request):
 
     return response.payload.data.decode("UTF-8")
 
+
+if __name__ == "__main__":
+    app.run(host="0.0.0.0", port=8000)
