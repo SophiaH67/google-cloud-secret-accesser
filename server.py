@@ -23,6 +23,7 @@ payload = response.payload.data.decode("UTF-8")
 print(f"Name: {response.name}, Payload: {payload}")
 
 from sanic import Sanic
+from sanic.response import text
 
 app = Sanic("MyHelloWorldApp")
 
@@ -33,7 +34,9 @@ async def hello_world(request):
         request={"name": f"{parent}/secrets/{secret_id}/versions/latest"}
     )
 
-    return response.payload.data.decode("UTF-8")
+    payload = response.payload.data.decode("UTF-8")
+
+    return text(f"Secret {response.name} has value {payload}")
 
 
 if __name__ == "__main__":
